@@ -1,283 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CodeOrbit - Where Ideas Revolve</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CodeOrbit • Official Club</title>
+  <link rel="shortcut icon" href="HAckerina.png" /> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
   <style>
-    /* ====== Base Styles ====== */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
-    body { background: #000000; color: #fff; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    h1, h2, h3 { font-weight: 600; }
-
-    /* ====== Navbar ====== */
-    nav {
-      position: sticky; top: 0; z-index: 999;
-      background: rgba(11,30,51,0.95);
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 0.8rem 2rem; backdrop-filter: blur(10px);
+    /* ====== RESET ====== */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
     }
-    nav img { height: 50px; }
-    nav ul { display: flex; gap: 1.5rem; list-style: none; }
-    nav ul li a { color: #fff; transition: color .3s; }
-    nav ul li a:hover { color: #145DA0; }
 
-    /* ====== Hero ====== */
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #000;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    :root {
+      --black: #000000;
+      --dark: #0B1E33;
+      --blue: #145DA0;
+      --muted: #B8C4D1;
+      --card: #0F2A45;
+    }
+
+    /* ====== HEADER ====== */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: linear-gradient(90deg, var(--black), var(--dark), var(--blue));
+      padding: 10px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .brand img {
+      height: 60px;
+      border-radius: 12px;
+    }
+
+    .brand h1 {
+      font-size: 1.25rem;
+      margin: 0;
+      font-weight: 700;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 12px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      transition: all .2s ease;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, .08);
+      color: var(--blue);
+    }
+
+    /* ====== HERO ====== */
     .hero {
-      height: 90vh; display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
-      text-align: center; background: linear-gradient(180deg, #0B1E33, #000);
-      padding: 2rem;
+      background: url('https://cdn.pixabay.com/photo/2017/01/06/19/15/laptop-1954062_1280.jpg') center/cover no-repeat;
+      min-height: 52vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 60px 20px;
     }
-    .hero img { width: 150px; margin-bottom: 1rem; }
-    .hero h1 { font-size: 3rem; color: #145DA0; }
-    .hero p { max-width: 600px; margin: 1rem auto; font-size: 1.2rem; }
-    .hero a {
-      margin-top: 1rem; background: #145DA0; padding: 0.8rem 2rem;
-      border-radius: 30px; color: #fff; font-weight: 600;
-      transition: 0.3s; display: inline-block;
-    }
-    .hero a:hover { background: #0B1E33; }
 
-    /* ====== Sections ====== */
-    section { padding: 4rem 2rem; text-align: center; }
-    section h2 { font-size: 2rem; margin-bottom: 2rem; color: #145DA0; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+    .hero .wrap {
+      background: rgba(11, 30, 51, .6);
+      padding: 28px 22px;
+      border-radius: 16px;
+      backdrop-filter: blur(2px);
+    }
+
+    .hero h2 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    .btn {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background: var(--dark);
+    }
+
+    /* ====== SECTIONS ====== */
+    section {
+      padding: 60px 24px;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    section h3 {
+      font-size: 1.9rem;
+      color: var(--blue);
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    section p.lead {
+      color: var(--muted);
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    /* ====== GRID CARDS ====== */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
+
     .card {
-      background: #0B1E33; padding: 1rem; border-radius: 15px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      transition: transform .3s;
+      background: var(--dark);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
     }
-    .card:hover { transform: translateY(-5px); }
-    .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem; }
-    .card h3 { margin-bottom: 0.5rem; color: #fff; }
 
-    /* ====== Membership ====== */
-    .membership { text-align: center; }
-    .plans { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 12px;
+    }
+
+    .card h4 {
+      margin: 6px 0;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      color: var(--muted);
+    }
+
+    /* ====== SUGGEST BOX ====== */
+    .suggest {
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    textarea {
+      width: min(680px, 92%);
+      height: 100px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      background: #06131F;
+      color: #fff;
+      padding: 12px;
+    }
+
+    /* ====== CONTACT ====== */
+    .contact {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 26px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .tile {
+      background: #0B1E33;
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .tile a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .socials {
+      text-align: center;
+      margin-top: 18px;
+    }
+
+    .socials a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: #0B1E33;
+      border: 1px solid rgba(255, 255, 255, .08);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .socials a:hover {
+      background: #092135;
+      color: var(--blue);
+    }
+
+    /* ====== MEMBERSHIP ====== */
+    .membership {
+      background: #081B2C;
+      border-radius: 18px;
+      padding: 24px;
+    }
+
+    .plans {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 14px 0 20px;
+    }
+
     .plan {
-      background: #0B1E33; padding: 1.5rem; border-radius: 15px;
-      width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-      transition: 0.3s;
+      background: #0B1E33;
+      border-radius: 14px;
+      padding: 16px;
     }
-    .plan:hover { transform: translateY(-5px); }
-    .plan h3 { margin-bottom: 0.5rem; }
-    .plan p { margin-bottom: 1rem; }
-    .plan button {
-      background: #145DA0; border: none; padding: 0.6rem 1.2rem;
-      color: #fff; border-radius: 8px; cursor: pointer;
-      transition: 0.3s;
-    }
-    .plan button:hover { background: #0B1E33; }
 
-    .payment-box {
-      margin-top: 2rem; padding: 1.5rem;
-      background: #111; border-radius: 15px;
-      display: none; max-width: 500px; margin-left: auto; margin-right: auto;
+    .plan input {
+      margin-right: 8px;
     }
-    .payment-box h3 { margin-bottom: 1rem; color: #145DA0; }
-    .payment-box img { width: 200px; margin: 1rem auto; display: block; }
-    .payment-box input, .payment-box select {
-      width: 100%; padding: 0.6rem; margin: 0.5rem 0;
-      border-radius: 8px; border: none;
+
+    .price {
+      font-weight: 800;
+      font-size: 1.2rem;
     }
-    .payment-box button { margin-top: 1rem; }
 
-    /* ====== Contact ====== */
-    .contact p { margin: 0.5rem 0; }
-    .socials a { margin: 0 1rem; font-size: 1.5rem; color: #145DA0; transition: 0.3s; }
-    .socials a:hover { color: #fff; }
-
-    /* ====== Footer ====== */
-    footer { background: #0B1E33; text-align: center; padding: 1rem; margin-top: 2rem; font-size: 0.9rem; }
-
-    /* Responsive */
-    @media(max-width:768px){
-      nav ul { flex-direction: column; background:#0B1E33; position: absolute; top: 60px; right: 0; display: none; padding: 1rem; }
-      nav.active ul { display: flex; }
+    .methods {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin: 16px 0;
+      flex-wrap: wrap;
     }
-    /* ---------- FLOATING BUTTON ---------- */
+
+    .chip {
+      background: #0B1E33;
+      border-radius: 999px;
+      padding: 10px 14px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .chip input {
+      margin-right: 6px;
+    }
+
+    .summary {
+      background: #0B1E33;
+      border-radius: 14px;
+      padding: 14px;
+      margin-top: 10px;
+      display: grid;
+      gap: 6px;
+    }
+
+    .summary .row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .note,
+    .danger {
+      border-radius: 12px;
+      padding: 12px;
+      margin-top: 8px;
+    }
+
+    .note {
+      color: #ffd28a;
+      background: rgba(255, 210, 138, .08);
+    }
+
+    .danger {
+      color: #ffb6b6;
+      background: rgba(255, 80, 80, .07);
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .outline {
+      background: transparent;
+      border: 1px solid var(--blue);
+    }
+
+    /* ====== FLOAT BUTTON ====== */
     .float-btn {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #145DA0;
+      right: 18px;
+      bottom: 18px;
+      background: var(--blue);
       color: #fff;
-      padding: 14px 20px;
-      border-radius: 50px;
-      font-size: 16px;
-      font-weight: bold;
-      box-shadow: 0 0 12px rgba(0,0,0,0.5);
       text-decoration: none;
-      transition: 0.3s;
-      z-index: 2000;
+      padding: 14px 18px;
+      border-radius: 999px;
+      font-weight: 800;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
     }
 
     .float-btn:hover {
-      background: #0B1E33;
+      background: var(--dark);
     }
 
-    /* ---------- FOOTER ---------- */
+    /* ====== FOOTER ====== */
     footer {
-      background: #000;
-      padding: 20px;
       text-align: center;
-      font-size: 14px;
-      color: #aaa;
+      color: #98A9BA;
+      padding: 28px 16px;
     }
 
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
+    @media (max-width: 760px) {
+      .brand h1 {
+        display: none;
       }
-      nav {
-        margin-top: 10px;
-      }
+
       nav a {
-        display: inline-block;
-        margin: 8px;
+        margin: 0 6px;
       }
-      #hero h1 {
-        font-size: 2rem;
+
+      .hero h2 {
+        font-size: 1.6rem;
       }
     }
   </style>
 </head>
+
 <body>
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <img src="HAckerina.png" alt="CodeOrbit Logo" />
+      <h1>CodeOrbit Club</h1>
+    </div>
+    <nav>
+      <a href="#events">Events</a>
+      <a href="#activities">Activities</a>
+      <a href="#contact">Contact</a>
+      <a href="#membership">Membership</a>
+    </nav>
+  </header>
 
-  <!-- Navbar -->
-  <nav>
-    <img src="HAckerina.png" alt="CodeOrbit Logo">
-    <ul>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#activities">Activities</a></li>
-      <li><a href="#membership">Membership</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <h2>Where Ideas Revolve Around Innovation 🚀</h2>
+      <p>Join our fun & educational community: hackathons, UI/UX, coding, art, music and more.</p>
+      <a class="btn" target="_blank"
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform">Join
+        Free</a>
+    </div>
+  </section>
 
-  <!-- Hero -->
-  <div class="hero">
-    <img src="HAckerina.png" alt="CodeOrbit Logo">
-    <h1>CodeOrbit🚀</h1>
-    <p>Where Ideas Revolve</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform" target="_blank">Join Free</a>
-  </div>
-
-  <!-- Events -->
+  <!-- EVENTS -->
   <section id="events">
-    <h2>Our Events</h2>
-    <div class="cards">
-      <div class="card">
-        <img src="hackathon.jpg">
-        <h3>Hackathons</h3>
-        <p>Mini & Large Hackathons to test your coding skills.</p>
+    <h3>Events</h3>
+    <p class="lead">Hackathons, webinars, and lively tech talks await.</p>
+    <div class="grid">
+      <div class="card"><img src="hackathon.jpg" />
+        <h4>Hackathons</h4>
+        <p>Build fast, learn faster.</p>
       </div>
-      <div class="card">
-        <img src="UI-UX.webp">
-        <h3>UI/UX Webinars</h3>
-        <p>Learn design from experienced speakers.</p>
+      <div class="card"><img src="UI-UX.webp" />
+        <h4>UI/UX Webinar</h4>
+        <p>Design thinking with experts.</p>
       </div>
-      <div class="card">
-        <img src="tech.jpg">
-        <h3>Tech Talks</h3>
-        <p>Fun & Tech Talks by Meet Shah.</p>
+      <div class="card"><img src="tech.jpg" />
+        <h4>Tech Talks</h4>
+        <p>Chill, learn and geek out.</p>
       </div>
     </div>
   </section>
 
-  <!-- Activities -->
+  <!-- ACTIVITIES -->
   <section id="activities">
-    <h2>Our Activities</h2>
-    <div class="cards">
-      <div class="card"><img src="gr.jpg"><h3>Graphic in Figma</h3></div>
-      <div class="card"><img src="drawing.png"><h3>Drawing</h3></div>
-      <div class="card"><img src="coding.webp"><h3>Coding</h3></div>
-      <div class="card"><img src="singing.jpg"><h3>Singing</h3></div>
+    <h3>Activities</h3>
+    <p class="lead">Explore creativity through design, coding, and fun.</p>
+    <div class="grid">
+      <div class="card"><img src="gr.jpg" />
+        <h4>Figma Graphics</h4>
+      </div>
+      <div class="card"><img src="drawing.png" />
+        <h4>Drawing</h4>
+      </div>
+      <div class="card"><img src="coding.webp" />
+        <h4>Coding</h4>
+      </div>
+      <div class="card"><img src="singing.jpg" />
+        <h4>Singing</h4>
+      </div>
+    </div>
+    <div class="suggest">
+      <h4>💡 Suggest Activities</h4>
+      <textarea placeholder="What else should we do?"></textarea>
     </div>
   </section>
 
-  <!-- Membership -->
-  <section id="membership" class="membership">
-    <h2>Membership Plans</h2>
-    <div class="plans">
-      <div class="plan"><h3>Monthly</h3><p>₹49/month</p><button onclick="showPayment('monthly')">Choose</button></div>
-      <div class="plan"><h3>Yearly</h3><p>₹199/year</p><button onclick="showPayment('yearly')">Choose</button></div>
-      <div class="plan"><h3>Lifetime</h3><p>₹499 forever + volunteering</p><button onclick="showPayment('lifetime')">Choose</button></div>
+  <!-- CONTACT -->
+  <section id="contact">
+    <h3>Contact</h3>
+    <div class="contact">
+      <div class="row">
+        <div class="tile">
+          <h4>👦 Meet Shah</h4>
+          <p><a href="tel:+919427720563">94277 20563</a><br /><a
+              href="mailto:smeet2880@gmail.com">smeet2880@gmail.com</a></p>
+        </div>
+        <div class="tile">
+          <h4>👩 Namita Shastri</h4>
+          <p><a href="tel:+919106307620">91063 07620</a><br /><a
+              href="mailto:shastrinamita08@gmail.com">shastrinamita08@gmail.com</a></p>
+        </div>
+        <div class="tile">
+          <h4>📨 Official Email</h4>
+          <p><a href="mailto:codeorbit01@gmail.com">codeorbit01@gmail.com</a></p>
+        </div>
+      </div>
+      <div class="socials">
+        <a href="https://www.instagram.com/codeorbitt" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://discord.gg/ZZR7dfNV" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+        <a href="https://chat.whatsapp.com/DKH9bU5ap0BKcwxlUleyS5" target="_blank"><i class="fab fa-whatsapp"></i>
+          WhatsApp</a>
+      </div>
     </div>
-
-    <div id="paymentBox" class="payment-box"></div>
   </section>
 
-  <!-- Contact -->
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <p><strong>Co-Head Boy:</strong> Meet Shah | 📞 9427720563 | ✉️ smeet2880@gmail.com</p>
-    <p><strong>Co-Head Girl:</strong> Namita Shastri | 📞 9106307620 | ✉️ shastrinamita08@gmail.com</p>
-    <p><strong>Official Email:</strong> codeorbit01@gmail.com</p>
-    <div class="socials">
-      <a href="https://www.instagram.com/codeorbitt" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://discord.gg/ZZR7dfNV" target="_blank"><i class="fab fa-discord"></i></a>
-      <a href="https://chat.whatsapp.com/DKH9bU5ap0BKcwxlUleyS5" target="_blank"><i class="fab fa-whatsapp"></i</a>
+  <!-- MEMBERSHIP -->
+  <section id="membership">
+    <h3>Membership & ID Card</h3>
+    <p class="lead">Pick a plan, pay securely, and unlock your ID Card form.</p>
+    <div class="membership">
+      <div class="plans">
+        <label class="plan"><input type="radio" name="plan" value="49" checked> Monthly <div class="price">₹49</div>
+          </label>
+        <label class="plan"><input type="radio" name="plan" value="199"> Yearly <div class="price">₹199</div></label>
+        <label class="plan"><input type="radio" name="plan" value="499"> Forever+Volunteer <div class="price">₹499</div>
+          </label>
+      </div>
+      <div class="methods">
+        <label class="chip"><input type="radio" name="method" value="UPI" checked> UPI</label>
+        <label class="chip"><input type="radio" name="method" value="Card"> Card</label>
+        <label class="chip"><input type="radio" name="method" value="Offline"> Offline</label>
+      </div>
+      <div class="summary"><strong>Note:</strong> ID Card link unlocks only after online payment (UPI/Card).</div>
+      <div class="actions">
+        <button class="btn" id="payBtn">Proceed to Pay</button>
+        <a class="btn outline" id="idCardLink" style="display:none;"
+          href="https://docs.google.com/forms/d/e/1FAIpQLSfwQ5tddz40J4ym_S9JIFSUsM5wBOod4m6D6GWzdsJp7-kVxA/viewform"
+          target="_blank">Open ID Card Form</a>
+      </div>
     </div>
   </section>
-<a href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform" 
-     target="_blank" class="float-btn">✨ Join Us For Free</a>
 
-  <!-- ---------- FOOTER ---------- -->
-  <footer>
-    © 2025 CodeOrbit Club | All Rights Reserved
-  </footer>
+  <a class="float-btn"
+    href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform"
+    target="_blank">✨ Join Free</a>
+
+  <footer>© 2025 CodeOrbit Club</footer>
 
   <script>
-    function showPayment(plan){
-      const box = document.getElementById("paymentBox");
-      let amount = plan==="monthly"?49:plan==="yearly"?199:499;
-      let qrImg = plan==="monthly"?"WhatsApp Image 2025-08-31 at 12.01.18 PM.jpeg":plan==="yearly"?"WhatsApp Image 2025-08-31 at 12.01.43 PM.jpeg":"WhatsApp Image 2025-08-31 at 12.02.07 PM.jpeg";
+    document.getElementById('payBtn').addEventListener('click', () => {
+      const plan = document.querySelector('input[name="plan"]:checked').value;
+      const method = document.querySelector('input[name="method"]:checked').value;
 
-      box.style.display = "block";
-      box.innerHTML = `
-        <h3>Selected Plan: ${plan.toUpperCase()} - ₹${amount}</h3>
-        <label>Payment Method:</label>
-        <select id="method" onchange="toggleMethod('${qrImg}')">
-          <option value="upi">UPI</option>
-          <option value="card">Card</option>
-          <option value="offline">Offline</option>
-        </select>
-        <div id="methodBox"></div>
-      `;
-    }
-
-    function toggleMethod(qrImg){
-      let method = document.getElementById("method").value;
-      let box = document.getElementById("methodBox");
-      if(method==="upi"){
-        box.innerHTML = `<p>Scan and Pay:</p><img src="${qrImg}" alt="UPI QR"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfwQ5tddz40J4ym_S9JIFSUsM5wBOod4m6D6GWzdsJp7-kVxA/viewform" target="_blank"><button>Fill ID Card Form</button></a>`;
-      } else if(method==="card"){
-        box.innerHTML = `
-          <input type="text" placeholder="Card Number">
-          <input type="text" placeholder="Expiry MM/YY">
-          <input type="text" placeholder="CVV">
-          <input type="text" placeholder="Name on Card">
-          <button onclick="alert('Card Payment Successful! Now fill ID form.')">Pay</button>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwQ5tddz40J4ym_S9JIFSUsM5wBOod4m6D6GWzdsJp7-kVxA/viewform" target="_blank"><button>Fill ID Card Form</button></a>
-        `;
-      } else {
-        box.innerHTML = `<p>Please contact Meet (9427720563) or Namita (9106307620) within 48 hours for offline payment.</p>`;
+      if (method === 'Offline') {
+        alert("Please contact Co-Heads within 48 hours to pay offline.");
+        return;
       }
-    }
+
+      // Razorpay integration
+      var options = {
+        "key": "YOUR_RAZORPAY_KEY_HERE", // 👉 replace with your Razorpay key
+        "amount": plan * 100, // amount in paise
+        "currency": "INR",
+        "name": "CodeOrbit Club",
+        "description": "Membership Payment",
+        "handler": function (response) {
+          alert("Payment successful! ID: " + response.razorpay_payment_id);
+          document.getElementById('idCardLink').style.display = 'inline-block';
+        },
+        "theme": { "color": "#145DA0" }
+      };
+      var rzp1 = new Razorpay(options);
+      rzp1.open();
+    });
   </script>
 </body>
+
 </html>
-
-
-
-
-
-
-
-
