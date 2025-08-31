@@ -1,316 +1,224 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CodeOrbit Club</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodeOrbit - Where Ideas Revolve</title>
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #000000;
-      color: #fff;
-      line-height: 1.6;
-    }
+    /* ====== Base Styles ====== */
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Poppins", sans-serif; }
+    body { background: #000000; color: #fff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    h1, h2, h3 { font-weight: 600; }
 
-    header {
-      background: linear-gradient(90deg, #000000, #0B1E33, #145DA0);
-      padding: 1rem;
-      text-align: center;
-    }
-
-    header img {
-      max-height: 100px;
-      margin-bottom: 10px;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.2rem;
-    }
-
+    /* ====== Navbar ====== */
     nav {
-      background: #0B1E33;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      position: sticky; top: 0; z-index: 999;
+      background: rgba(11,30,51,0.95);
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.8rem 2rem; backdrop-filter: blur(10px);
     }
+    nav img { height: 50px; }
+    nav ul { display: flex; gap: 1.5rem; list-style: none; }
+    nav ul li a { color: #fff; transition: color .3s; }
+    nav ul li a:hover { color: #145DA0; }
 
-    nav a {
-      color: #fff;
-      text-decoration: none;
-      padding: 0.75rem 1.2rem;
+    /* ====== Hero ====== */
+    .hero {
+      height: 90vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center; background: linear-gradient(180deg, #0B1E33, #000);
+      padding: 2rem;
     }
-
-    nav a:hover {
-      background: #145DA0;
-      border-radius: 5px;
+    .hero img { width: 150px; margin-bottom: 1rem; }
+    .hero h1 { font-size: 3rem; color: #145DA0; }
+    .hero p { max-width: 600px; margin: 1rem auto; font-size: 1.2rem; }
+    .hero a {
+      margin-top: 1rem; background: #145DA0; padding: 0.8rem 2rem;
+      border-radius: 30px; color: #fff; font-weight: 600;
+      transition: 0.3s; display: inline-block;
     }
+    .hero a:hover { background: #0B1E33; }
 
-    section {
-      padding: 3rem 1rem;
-      text-align: center;
-    }
-
-    h2 {
-      color: #145DA0;
-      margin-bottom: 1.5rem;
-    }
-
-    .grid {
-      display: grid;
-      gap: 20px;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-
+    /* ====== Sections ====== */
+    section { padding: 4rem 2rem; text-align: center; }
+    section h2 { font-size: 2rem; margin-bottom: 2rem; color: #145DA0; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
     .card {
-      background: #0B1E33;
-      border-radius: 10px;
-      padding: 1rem;
-      box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      background: #0B1E33; padding: 1rem; border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      transition: transform .3s;
     }
+    .card:hover { transform: translateY(-5px); }
+    .card img { width: 100%; height: 150px; object-fit: cover; border-radius: 10px; margin-bottom: 1rem; }
+    .card h3 { margin-bottom: 0.5rem; color: #fff; }
 
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-      margin-bottom: 10px;
+    /* ====== Membership ====== */
+    .membership { text-align: center; }
+    .plans { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; }
+    .plan {
+      background: #0B1E33; padding: 1.5rem; border-radius: 15px;
+      width: 280px; box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      transition: 0.3s;
     }
-
-    textarea,
-    input,
-    select,
-    button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: none;
+    .plan:hover { transform: translateY(-5px); }
+    .plan h3 { margin-bottom: 0.5rem; }
+    .plan p { margin-bottom: 1rem; }
+    .plan button {
+      background: #145DA0; border: none; padding: 0.6rem 1.2rem;
+      color: #fff; border-radius: 8px; cursor: pointer;
+      transition: 0.3s;
     }
+    .plan button:hover { background: #0B1E33; }
 
-    button {
-      background: #145DA0;
-      color: #fff;
-      cursor: pointer;
+    .payment-box {
+      margin-top: 2rem; padding: 1.5rem;
+      background: #111; border-radius: 15px;
+      display: none; max-width: 500px; margin-left: auto; margin-right: auto;
     }
-
-    button:hover {
-      background: #0B1E33;
+    .payment-box h3 { margin-bottom: 1rem; color: #145DA0; }
+    .payment-box img { width: 200px; margin: 1rem auto; display: block; }
+    .payment-box input, .payment-box select {
+      width: 100%; padding: 0.6rem; margin: 0.5rem 0;
+      border-radius: 8px; border: none;
     }
+    .payment-box button { margin-top: 1rem; }
 
-    footer {
-      background: #0B1E33;
-      text-align: center;
-      padding: 1rem;
-    }
+    /* ====== Contact ====== */
+    .contact p { margin: 0.5rem 0; }
+    .socials a { margin: 0 1rem; font-size: 1.5rem; color: #145DA0; transition: 0.3s; }
+    .socials a:hover { color: #fff; }
 
-    .social a {
-      margin: 0 10px;
-      color: #fff;
-    }
+    /* ====== Footer ====== */
+    footer { background: #0B1E33; text-align: center; padding: 1rem; margin-top: 2rem; font-size: 0.9rem; }
 
-    /* Membership */
-    .plans,
-    .payment-methods {
-      margin-top: 20px;
-    }
-
-    .qr-img {
-      max-width: 250px;
-      margin: 20px auto;
-      display: none;
-    }
-
-    .card-form,
-    .offline-box {
-      display: none;
-      margin-top: 20px;
-      text-align: left;
-    }
-
-    .summary {
-      background: #111;
-      padding: 10px;
-      margin: 20px 0;
-      border-radius: 5px;
-    }
-
-    @media(max-width:600px) {
-      header h1 {
-        font-size: 1.6rem;
-      }
-
-      nav a {
-        padding: 0.5rem;
-      }
+    /* Responsive */
+    @media(max-width:768px){
+      nav ul { flex-direction: column; background:#0B1E33; position: absolute; top: 60px; right: 0; display: none; padding: 1rem; }
+      nav.active ul { display: flex; }
     }
   </style>
 </head>
-
 <body>
-  <header>
-    <img src="HAckerina.png" alt="CodeOrbit Logo">
-    <h1>CodeOrbit Club</h1>
-    <p>Where Ideas Revolve 🚀</p>
-  </header>
+
+  <!-- Navbar -->
   <nav>
-    <a href="#events">Events</a>
-    <a href="#activities">Activities</a>
-    <a href="#membership">Membership</a>
-    <a href="#contact">Contact</a>
+    <img src="HAckerina.png" alt="CodeOrbit Logo">
+    <ul>
+      <li><a href="#events">Events</a></li>
+      <li><a href="#activities">Activities</a></li>
+      <li><a href="#membership">Membership</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
   </nav>
 
-  <section id="hero">
-    <h2>Join CodeOrbit</h2>
-    <p>Be part of innovation, fun, and learning.</p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform"
-      target="_blank">
-      <button>Join for Free</button>
-    </a>
-  </section>
+  <!-- Hero -->
+  <div class="hero">
+    <img src="HAckerina.png" alt="CodeOrbit Logo">
+    <h1>CodeOrbit🚀</h1>
+    <p>Where Ideas Revolve</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform" target="_blank">Join Free</a>
+  </div>
 
+  <!-- Events -->
   <section id="events">
     <h2>Our Events</h2>
-    <div class="grid">
-      <div class="card"><img src="https://cdn.pixabay.com/photo/2016/03/09/15/10/computer-1245714_1280.jpg">
+    <div class="cards">
+      <div class="card">
+        <img src="hackathon.jpg">
         <h3>Hackathons</h3>
-        <p>Mini & large hackathons to challenge your skills.</p>
+        <p>Mini & Large Hackathons to test your coding skills.</p>
       </div>
-      <div class="card"><img src="https://cdn.pixabay.com/photo/2016/11/29/09/32/ux-1863610_1280.jpg">
-        <h3>UI/UX Webinar</h3>
-        <p>Learn from expert speakers in design & UX.</p>
+      <div class="card">
+        <img src="UI-UX.webp">
+        <h3>UI/UX Webinars</h3>
+        <p>Learn design from experienced speakers.</p>
       </div>
-      <div class="card"><img src="https://cdn.pixabay.com/photo/2017/08/06/00/23/people-2588594_1280.jpg">
+      <div class="card">
+        <img src="tech.jpg">
         <h3>Tech Talks</h3>
-        <p>Fun and insightful tech talks by Meet Shah.</p>
+        <p>Fun & Tech Talks by Meet Shah.</p>
       </div>
     </div>
   </section>
 
+  <!-- Activities -->
   <section id="activities">
     <h2>Our Activities</h2>
-    <div class="grid">
-      <div class="card"><img src="https://cdn.pixabay.com/photo/2016/11/29/02/59/computer-1869236_1280.jpg">
-        <h3>Graphic Design</h3>
-        <p>Learn Figma and design amazing graphics.</p>
-      </div>
-      <div class="card"><img src="https://cdn.pixabay.com/photo/2016/11/23/00/46/painting-1851060_1280.jpg">
-        <h3>Drawing</h3>
-        <p>Showcase your creativity with drawing sessions.</p>
-      </div>
-      <div class="card"><img src="https://cdn.pixabay.com/photo/2014/04/03/10/32/keyboard-311869_1280.png">
-        <h3>Coding</h3>
-        <p>Sharpen your skills with coding activities.</p>
-      </div>
-      <div class="card"><img src="https://cdn.pixabay.com/photo/2017/01/20/00/30/microphone-1990890_1280.jpg">
-        <h3>Singing</h3>
-        <p>Bring fun to our club with music & singing.</p>
-      </div>
+    <div class="cards">
+      <div class="card"><img src="gr.jpg"><h3>Graphic in Figma</h3></div>
+      <div class="card"><img src="drawing.png"><h3>Drawing</h3></div>
+      <div class="card"><img src="coding.webp"><h3>Coding</h3></div>
+      <div class="card"><img src="singing.jpg"><h3>Singing</h3></div>
     </div>
-    <textarea placeholder="Suggest another activity..."></textarea>
-    <button>Submit</button>
   </section>
 
-  <section id="membership">
-    <h2>Paid Membership</h2>
-    <p>Choose your plan & unlock ID card + exclusive benefits.</p>
-
+  <!-- Membership -->
+  <section id="membership" class="membership">
+    <h2>Membership Plans</h2>
     <div class="plans">
-      <select id="plan">
-        <option value="" disabled selected>Select Plan</option>
-        <option value="49">Monthly - ₹49</option>
-        <option value="199">Yearly - ₹199</option>
-        <option value="499">Lifetime + Volunteering - ₹499</option>
-      </select>
+      <div class="plan"><h3>Monthly</h3><p>₹49/month</p><button onclick="showPayment('monthly')">Choose</button></div>
+      <div class="plan"><h3>Yearly</h3><p>₹199/year</p><button onclick="showPayment('yearly')">Choose</button></div>
+      <div class="plan"><h3>Lifetime</h3><p>₹499 forever + volunteering</p><button onclick="showPayment('lifetime')">Choose</button></div>
     </div>
 
-    <div class="payment-methods">
-      <select id="method">
-        <option value="" disabled selected>Select Payment Method</option>
-        <option value="upi">UPI</option>
-        <option value="card">Card</option>
-        <option value="offline">Offline</option>
-      </select>
-    </div>
-
-    <div class="summary" id="summary">Select a plan and method above.</div>
-
-    <img id="qr" class="qr-img" src="" alt="UPI QR">
-
-    <div class="card-form" id="cardForm">
-      <input type="text" placeholder="Card Number">
-      <input type="text" placeholder="Expiry MM/YY">
-      <input type="text" placeholder="CVV">
-      <input type="text" placeholder="Cardholder Name">
-    </div>
-
-    <div class="offline-box" id="offlineBox">
-      <p>⚠️ Please contact co-heads within 48 hours:</p>
-      <p>Meet Shah: 9427720563 | smeet2880@gmail.com</p>
-      <p>Namita Shastri: 9106307620 | shastrinamita08@gmail.com</p>
-    </div>
-
-    <button id="payBtn">Pay Now</button>
-
-    <div id="idCardLink" style="display:none;margin-top:20px;">
-      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwQ5tddz40J4ym_S9JIFSUsM5wBOod4m6D6GWzdsJp7-kVxA/viewform"
-        target="_blank">
-        <button>Get Your ID Card</button>
-      </a>
-    </div>
+    <div id="paymentBox" class="payment-box"></div>
   </section>
 
-  <section id="contact">
+  <!-- Contact -->
+  <section id="contact" class="contact">
     <h2>Contact Us</h2>
-    <p>📧 Official Email: codeorbit01@gmail.com</p>
-    <p>👦 Meet Shah (Co-head Boy) - 9427720563 | smeet2880@gmail.com</p>
-    <p>👩 Namita Shastri (Co-head Girl) - 9106307620 | shastrinamita08@gmail.com</p>
-
-    <div class="social">
-      <a href="https://www.instagram.com/codeorbitt" target="_blank">Instagram</a> |
-      <a href="https://discord.gg/ZZR7dfNV" target="_blank">Discord</a> |
-      <a href="https://chat.whatsapp.com/DKH9bU5ap0BKcwxlUleyS5" target="_blank">WhatsApp</a>
+    <p><strong>Co-Head Boy:</strong> Meet Shah | 📞 9427720563 | ✉️ smeet2880@gmail.com</p>
+    <p><strong>Co-Head Girl:</strong> Namita Shastri | 📞 9106307620 | ✉️ shastrinamita08@gmail.com</p>
+    <p><strong>Official Email:</strong> codeorbit01@gmail.com</p>
+    <div class="socials">
+      <a href="https://www.instagram.com/codeorbitt" target="_blank">📸</a>
+      <a href="https://discord.gg/ZZR7dfNV" target="_blank">💬</a>
+      <a href="https://chat.whatsapp.com/DKH9bU5ap0BKcwxlUleyS5" target="_blank">📱</a>
     </div>
   </section>
 
   <footer>
-    <p>© 2025 CodeOrbit Club. All Rights Reserved.</p>
+    <p>© 2025 CodeOrbit | All Rights Reserved</p>
   </footer>
 
   <script>
-    const planSel = document.getElementById('plan');
-    const methodSel = document.getElementById('method');
-    const summary = document.getElementById('summary');
-    const qr = document.getElementById('qr');
-    const cardForm = document.getElementById('cardForm');
-    const offlineBox = document.getElementById('offlineBox');
-    const payBtn = document.getElementById('payBtn');
-    const idCard = document.getElementById('idCardLink');
+    function showPayment(plan){
+      const box = document.getElementById("paymentBox");
+      let amount = plan==="monthly"?49:plan==="yearly"?199:499;
+      let qrImg = plan==="monthly"?"WhatsApp Image 2025-08-31 at 12.01.18 PM.jpeg":plan==="yearly"?"WhatsApp Image 2025-08-31 at 12.01.43 PM.jpeg":"WhatsApp Image 2025-08-31 at 12.02.07 PM.jpeg";
 
-    payBtn.addEventListener('click', () => {
-      const plan = planSel.value;
-      const method = methodSel.value;
-      if (!plan || !method) { alert("Select plan and method!"); return; }
-      summary.innerText = `You selected ₹${plan} plan with ${method.toUpperCase()} method.`;
-      qr.style.display = cardForm.style.display = offlineBox.style.display = "none";
-      idCard.style.display = "none";
+      box.style.display = "block";
+      box.innerHTML = `
+        <h3>Selected Plan: ${plan.toUpperCase()} - ₹${amount}</h3>
+        <label>Payment Method:</label>
+        <select id="method" onchange="toggleMethod('${qrImg}')">
+          <option value="upi">UPI</option>
+          <option value="card">Card</option>
+          <option value="offline">Offline</option>
+        </select>
+        <div id="methodBox"></div>
+      `;
+    }
 
-      if (method === "upi") {
-        if (plan === "49") qr.src = "WhatsApp Image 2025-08-31 at 12.01.18 PM.jpeg";
-        if (plan === "199") qr.src = "WhatsApp Image 2025-08-31 at 12.01.43 PM.jpeg";
-        if (plan === "499") qr.src = "WhatsApp Image 2025-08-31 at 12.02.07 PM.jpeg";
-        qr.style.display = "block";
-        setTimeout(() => idCard.style.display = "block", 4000); // show ID card link after 4s
+    function toggleMethod(qrImg){
+      let method = document.getElementById("method").value;
+      let box = document.getElementById("methodBox");
+      if(method==="upi"){
+        box.innerHTML = `<p>Scan and Pay:</p><img src="${qrImg}" alt="UPI QR"><a href="https://docs.google.com/forms/d/e/1FAIpQLSfwQ5tddz40J4ym_S9JIFSUsM5wBOod4m6D6GWzdsJp7-kVxA/viewform" target="_blank"><button>Fill ID Card Form</button></a>`;
+      } else if(method==="card"){
+        box.innerHTML = `
+          <input type="text" placeholder="Card Number">
+          <input type="text" placeholder="Expiry MM/YY">
+          <input type="text" placeholder="CVV">
+          <input type="text" placeholder="Name on Card">
+          <button onclick="alert('Card Payment Successful! Now fill ID form.')">Pay</button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfwQ5tddz40J4ym_S9JIFSUsM5wBOod4m6D6GWzdsJp7-kVxA/viewform" target="_blank"><button>Fill ID Card Form</button></a>
+        `;
+      } else {
+        box.innerHTML = `<p>Please contact Meet (9427720563) or Namita (9106307620) within 48 hours for offline payment.</p>`;
       }
-      if (method === "card") {
-        cardForm.style.display = "block";
-        setTimeout(() => idCard.style.display = "block", 4000);
-      }
-      if (method === "offline") {
-        offlineBox.style.display = "block";
-      }
-    });
+    }
   </script>
 </body>
-
 </html>
