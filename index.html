@@ -2,539 +2,258 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CodeOrbit</title>
-  <link rel="shortcut icon" href="HAckerina.png" /> 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeOrbit Club</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    /* ====== RESET ====== */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-    }
-
-    html,
     body {
       margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: "Segoe UI", Arial, sans-serif;
-      background: #000;
+      font-family: 'Poppins', sans-serif;
+      background: #000000;
       color: #fff;
-      line-height: 1.6;
     }
 
-    :root {
-      --black: #000000;
-      --dark: #0B1E33;
-      --blue: #145DA0;
-      --muted: #B8C4D1;
-      --card: #0F2A45;
-    }
-
-    /* ====== HEADER ====== */
     header {
+      background: linear-gradient(90deg, #000000, #0B1E33, #145DA0);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: linear-gradient(90deg, var(--black), var(--dark), var(--blue));
-      padding: 10px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 255, 255, .08);
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .brand img {
+    header img {
       height: 60px;
-      border-radius: 12px;
-    }
-
-    .brand h1 {
-      font-size: 1.25rem;
-      margin: 0;
-      font-weight: 700;
     }
 
     nav a {
       color: #fff;
+      margin: 0 1rem;
       text-decoration: none;
       font-weight: 600;
-      margin: 0 12px;
-      padding: 8px 10px;
-      border-radius: 10px;
-      transition: all .2s ease;
+      transition: 0.3s;
     }
 
     nav a:hover {
-      background: rgba(255, 255, 255, .08);
-      color: var(--blue);
+      color: #00aaff;
     }
 
-    /* ====== HERO ====== */
-    .hero {
-      background: url('https://cdn.pixabay.com/photo/2017/01/06/19/15/laptop-1954062_1280.jpg') center/cover no-repeat;
-      min-height: 52vh;
-      display: grid;
-      place-items: center;
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .hero .wrap {
-      background: rgba(11, 30, 51, .6);
-      padding: 28px 22px;
-      border-radius: 16px;
-      backdrop-filter: blur(2px);
-    }
-
-    .hero h2 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      margin-bottom: 18px;
-    }
-
-    .btn {
-      background: var(--blue);
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      padding: 12px 20px;
-      font-weight: 700;
-      cursor: pointer;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn:hover {
-      background: var(--dark);
-    }
-
-    /* ====== SECTIONS ====== */
     section {
-      padding: 60px 24px;
-      max-width: 1100px;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #00aaff;
+    }
+
+    p {
+      max-width: 700px;
       margin: auto;
+      line-height: 1.6;
     }
 
-    section h3 {
-      font-size: 1.9rem;
-      color: var(--blue);
-      margin-bottom: 14px;
-      text-align: center;
-    }
-
-    section p.lead {
-      color: var(--muted);
-      text-align: center;
-      margin-bottom: 22px;
-    }
-
-    /* ====== GRID CARDS ====== */
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 22px;
+      gap: 2rem;
+      margin-top: 2rem;
     }
 
     .card {
-      background: var(--dark);
-      border-radius: 14px;
-      padding: 16px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
+      background: #0B1E33;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
     }
 
     .card img {
       width: 100%;
-      height: 170px;
-      object-fit: cover;
       border-radius: 10px;
-      margin-bottom: 12px;
     }
 
-    .card h4 {
-      margin: 6px 0;
-      font-size: 1.1rem;
+    .team-card {
+      background: #111;
+      padding: 2rem;
+      border-radius: 15px;
     }
 
-    .card p {
-      color: var(--muted);
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
     }
 
-    /* ====== SUGGEST BOX ====== */
-    .suggest {
-      text-align: center;
-      margin-top: 24px;
+    .team-card h3 {
+      margin: 0.5rem 0;
     }
 
-    textarea {
-      width: min(680px, 92%);
-      height: 100px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, .14);
-      background: #06131F;
+    .team-card p {
+      margin-bottom: 1rem;
+    }
+
+    .team-card a {
+      background: #145DA0;
       color: #fff;
-      padding: 12px;
-    }
-
-    /* ====== CONTACT ====== */
-    .contact {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 26px;
-    }
-
-    .row {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 16px;
-    }
-
-    .tile {
-      background: #0B1E33;
-      border-radius: 12px;
-      padding: 16px;
-    }
-
-    .tile a {
-      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
       text-decoration: none;
     }
 
-    .socials {
-      text-align: center;
-      margin-top: 18px;
+    .team-card a:hover {
+      background: #00aaff;
     }
 
-    .socials a {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      margin: 0 10px;
-      padding: 10px 14px;
-      border-radius: 12px;
-      background: #0B1E33;
-      border: 1px solid rgba(255, 255, 255, .08);
-      color: #fff;
-      text-decoration: none;
-      font-weight: 700;
-    }
-
-    .socials a:hover {
-      background: #092135;
-      color: var(--blue);
-    }
-
-    /* ====== MEMBERSHIP ====== */
-    .membership {
-      background: #081B2C;
-      border-radius: 18px;
-      padding: 24px;
-    }
-
-    .plans {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-      margin: 14px 0 20px;
-    }
-
-    .plan {
-      background: #0B1E33;
-      border-radius: 14px;
-      padding: 16px;
-    }
-
-    .plan input {
-      margin-right: 8px;
-    }
-
-    .price {
-      font-weight: 800;
-      font-size: 1.2rem;
-    }
-
-    .methods {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      margin: 16px 0;
-      flex-wrap: wrap;
-    }
-
-    .chip {
-      background: #0B1E33;
-      border-radius: 999px;
-      padding: 10px 14px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .chip input {
-      margin-right: 6px;
-    }
-
-    .summary {
-      background: #0B1E33;
-      border-radius: 14px;
-      padding: 14px;
-      margin-top: 10px;
-      display: grid;
-      gap: 6px;
-    }
-
-    .summary .row {
-      display: flex;
-      justify-content: space-between;
-    }
-
-    .note,
-    .danger {
-      border-radius: 12px;
-      padding: 12px;
-      margin-top: 8px;
-    }
-
-    .note {
-      color: #ffd28a;
-      background: rgba(255, 210, 138, .08);
-    }
-
-    .danger {
-      color: #ffb6b6;
-      background: rgba(255, 80, 80, .07);
-    }
-
-    .actions {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 16px;
-      flex-wrap: wrap;
-    }
-
-    .outline {
-      background: transparent;
-      border: 1px solid var(--blue);
-    }
-
-    /* ====== FLOAT BUTTON ====== */
-    .float-btn {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      background: var(--blue);
-      color: #fff;
-      text-decoration: none;
-      padding: 14px 18px;
-      border-radius: 999px;
-      font-weight: 800;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, .35);
-    }
-
-    .float-btn:hover {
-      background: var(--dark);
-    }
-
-    /* ====== FOOTER ====== */
     footer {
+      background: #0B1E33;
       text-align: center;
-      color: #98A9BA;
-      padding: 28px 16px;
+      padding: 2rem;
+      margin-top: 3rem;
     }
 
-    @media (max-width: 760px) {
-      .brand h1 {
-        display: none;
-      }
-
-      nav a {
-        margin: 0 6px;
-      }
-
-      .hero h2 {
-        font-size: 1.6rem;
-      }
+    footer a {
+      color: #00aaff;
+      margin: 0 0.5rem;
+      font-size: 1.3rem;
     }
   </style>
 </head>
 
 <body>
-  <!-- HEADER -->
   <header>
-    <div class="brand">
-      <img src="HAckerina.png" alt="CodeOrbit Logo" />
-      <h1>CodeOrbit Club</h1>
-    </div>
+    <img src="HAckerina.png" alt="CodeOrbit Logo">
     <nav>
       <a href="#events">Events</a>
       <a href="#activities">Activities</a>
+      <a href="#team">Our Team</a>
       <a href="#contact">Contact</a>
-      <a href="#membership">Membership</a>
     </nav>
   </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="wrap">
-      <h2>Where Ideas Revolve🚀</h2>
-      <p>Join our fun & educational community: hackathons, UI/UX, coding, art, music and more.</p>
-      <a class="btn" target="_blank"
-        href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform">Join
-        Free</a>
-    </div>
+  <section id="hero">
+    <h1>Welcome to <span style="color:#00aaff;">CodeOrbit</span></h1>
+    <p>Where Fun Meets Technology — Join us for Hackathons, Webinars, and More!</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform"
+      target="_blank"
+      style="background:#145DA0;color:#fff;padding:1rem 2rem;border-radius:10px;text-decoration:none;margin-top:1rem;display:inline-block;">Join
+      Us (Free)</a>
   </section>
 
-  <!-- EVENTS -->
   <section id="events">
-    <h3>Events</h3>
-    <p class="lead">Hackathons, webinars, and lively tech talks await.</p>
+    <h2>Our Events</h2>
     <div class="grid">
-      <div class="card"><img src="hackathon.jpg" />
-        <h4>Hackathons</h4>
-        <p>Build fast, learn faster.</p>
+      <div class="card">
+        <img src="hackathon.jpg" alt="Hackathon">
+        <h3>Hackathons</h3>
+        <p>Mini & Large Hackathons to showcase coding talent.</p>
       </div>
-      <div class="card"><img src="UI-UX.webp" />
-        <h4>UI/UX Webinar</h4>
-        <p>Design thinking with experts.</p>
+      <div class="card">
+        <img src="UI-UX.webp" alt="UI/UX Webinar">
+        <h3>UI/UX Webinar</h3>
+        <p>Expert sessions on UI/UX design principles.</p>
       </div>
-      <div class="card"><img src="tech.jpg" />
-        <h4>Tech Talks</h4>
-        <p>Chill, learn and geek out.</p>
+      <div class="card">
+        <img src="tech.jpg" alt="Tech Talks">
+        <h3>Fun & Tech Talks</h3>
+        <p>Interactive talks by Meet Shah and other speakers.</p>
       </div>
     </div>
   </section>
 
-  <!-- ACTIVITIES -->
   <section id="activities">
-    <h3>Activities</h3>
-    <p class="lead">Explore creativity through design, coding, and fun.</p>
+    <h2>Our Activities</h2>
     <div class="grid">
-      <div class="card"><img src="gr.jpg" />
-        <h4>Figma Graphics</h4>
+      <div class="card">
+        <h3>Graphics in Figma</h3>
       </div>
-      <div class="card"><img src="drawing.png" />
-        <h4>Drawing</h4>
+      <div class="card">
+        <h3>Drawing</h3>
       </div>
-      <div class="card"><img src="coding.webp" />
-        <h4>Coding</h4>
+      <div class="card">
+        <h3>Coding</h3>
       </div>
-      <div class="card"><img src="singing.jpg" />
-        <h4>Singing</h4>
+      <div class="card">
+        <h3>Singing</h3>
       </div>
     </div>
-    <div class="suggest">
-      <h4>💡 Suggest Activities</h4>
-      <textarea placeholder="What else should we do?"></textarea>
+    <p style="margin-top:2rem;">Suggest another activity:</p>
+    <textarea placeholder="Your suggestion..." style="padding:1rem;width:60%;border-radius:8px;"></textarea>
+  </section>
+
+  <section id="team">
+    <h2>Meet Our Team</h2>
+    <div class="grid">
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Head of Club</h3>
+        <p>Main Leader</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Meet Shah</h3>
+        <p>Co-Head (Boys)</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Namita Shastri</h3>
+        <p>Co-Head (Girls)</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Help Head 1</h3>
+        <p>Support</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Help Head 2</h3>
+        <p>Support</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Help Head 3</h3>
+        <p>Support</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
   <section id="contact">
-    <h3>Contact</h3>
-    <div class="contact">
-      <div class="row">
-        <div class="tile">
-          <h4>👦 Meet Shah</h4>
-          <p><a href="tel:+919427720563">94277 20563</a><br /><a
-              href="mailto:smeet2880@gmail.com">smeet2880@gmail.com</a></p>
-        </div>
-        <div class="tile">
-          <h4>📨 Official Email</h4>
-          <p><a href="mailto:codeorbit01@gmail.com">codeorbit01@gmail.com</a></p>
-        </div>
-      </div>
-      <div class="socials">
-        <a href="https://www.instagram.com/codeorbitt" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://discord.gg/ZZR7dfNV" target="_blank"><i class="fab fa-discord"></i> Discord</a>
-        <a href="https://chat.whatsapp.com/DKH9bU5ap0BKcwxlUleyS5" target="_blank"><i class="fab fa-whatsapp"></i>
-          WhatsApp</a>
-      </div>
+    <h2>Contact Us</h2>
+    <p>📧 Official Email: codeorbit01@gmail.com</p>
+    <p>👦 Meet Shah - 9427720563 - smeet2880@gmail.com</p>
+    <div>
+      <a href="https://www.instagram.com/codeorbitt" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://discord.gg/ZZR7dfNV" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://chat.whatsapp.com/DKH9bU5ap0BKcwxlUleyS5" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
   </section>
 
-  <!-- MEMBERSHIP -->
-  <section id="membership">
-    <h3>Membership & ID Card</h3>
-    <p class="lead">Pick a plan to be member, pay securely, and unlock your ID Card form.</p>
-    <div class="membership">
-      <div class="plans">
-        <label class="plan"><input type="radio" name="plan" value="49" checked> Monthly <div class="price">₹49</div>
-          </label>
-        <label class="plan"><input type="radio" name="plan" value="199"> Yearly <div class="price">₹199</div></label>
-        <label class="plan"><input type="radio" name="plan" value="499"> Forever+Volunteer Opportunity <div class="price">₹499</div>
-          </label>
-      </div>
-      <div class="methods">
-        <label class="chip"><input type="radio" name="method" value="UPI" checked> UPI</label>
-        <label class="chip"><input type="radio" name="method" value="Card"> Card</label>
-        <label class="chip"><input type="radio" name="method" value="Offline"> Offline</label>
-      </div>
-      <div class="summary"><strong>Note:</strong> ID Card link unlocks only after online payment (UPI/Card).</div>
-      <div class="actions">
-        <button class="btn" id="payBtn">Proceed to Pay</button>
-        <a class="btn outline" id="idCardLink" style="display:none;"
-          href="https://docs.google.com/forms/d/e/1FAIpQLSfwQ5tddz40J4ym_S9JIFSUsM5wBOod4m6D6GWzdsJp7-kVxA/viewform"
-          target="_blank">Open ID Card Form</a>
-      </div>
-    </div>
-  </section>
-
-  <a class="float-btn"
-    href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform"
-    target="_blank">✨ Join Us For Free</a>
-
-  <footer>© 2025 CodeOrbit Club</footer>
-
-  <script>
-    document.getElementById('payBtn').addEventListener('click', () => {
-      const plan = document.querySelector('input[name="plan"]:checked').value;
-      const method = document.querySelector('input[name="method"]:checked').value;
-
-      if (method === 'Offline') {
-        alert("Please contact Meet Shah within 48 hours to pay offline.");
-        return;
-      }
-
-      // Razorpay integration
-      var options = {
-        "key": "YOUR_RAZORPAY_KEY_HERE", // 👉 replace with your Razorpay key
-        "amount": plan * 100, // amount in paise
-        "currency": "INR",
-        "name": "CodeOrbit Club",
-        "description": "Membership Payment",
-        "handler": function (response) {
-          alert("Payment successful! ID: " + response.razorpay_payment_id);
-          document.getElementById('idCardLink').style.display = 'inline-block';
-        },
-        "theme": { "color": "#145DA0" }
-      };
-      var rzp1 = new Razorpay(options);
-      rzp1.open();
-    });
-  </script>
+  <footer>
+    <p>© 2025 CodeOrbit Club. All Rights Reserved.</p>
+  </footer>
 </body>
 
 </html>
-
-
-
-
