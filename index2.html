@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodeOrbit Club</title>
+  <link rel="shortcut icon" href="HAckerina.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: #000000;
+      color: #fff;
+    }
+
+    header {
+      background: linear-gradient(90deg, #000000, #0B1E33, #145DA0);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    nav a {
+      color: #fff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #00aaff;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      color: #00aaff;
+    }
+
+    p {
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .card {
+      background: #0B1E33;
+      border-radius: 15px;
+      padding: 1.5rem;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card img {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .team-card {
+      background: #111;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+
+    .team-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .team-card h3 {
+      margin: 0.5rem 0;
+    }
+
+    .team-card p {
+      margin-bottom: 1rem;
+    }
+
+    .team-card a {
+      background: #145DA0;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+
+    .team-card a:hover {
+      background: #00aaff;
+    }
+
+    footer {
+      background: #0B1E33;
+      text-align: center;
+      padding: 2rem;
+      margin-top: 3rem;
+    }
+
+    footer a {
+      color: #00aaff;
+      margin: 0 0.5rem;
+      font-size: 1.3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <img src="HAckerina.png" alt="CodeOrbit Logo">
+    <nav>
+      <a href="#events">Events</a>
+      <a href="#activities">Activities</a>
+      <a href="#team">Our Team</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero">
+    <h1>Welcome to <span style="color:#00aaff;">CodeOrbit</span></h1>
+    <p>Where Ideas Revolves — Join us for Hackathons, Webinars, and More!</p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdOkqs2ZIxkduTRvsdfoUY3Pk1RtNCHVQqCYwUu-V2X-j9qFg/viewform"
+      target="_blank"
+      style="background:#145DA0;color:#fff;padding:1rem 2rem;border-radius:10px;text-decoration:none;margin-top:1rem;display:inline-block;">Join
+      Us (Free)</a>
+  </section>
+
+  <section id="events">
+    <h2>Our Events</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="hackathon.jpg" alt="Hackathon">
+        <h3>Hackathons</h3>
+        <p>Mini & Large Hackathons to showcase coding talent.</p>
+      </div>
+      <div class="card">
+        <img src="UI-UX.webp" alt="UI/UX Webinar">
+        <h3>UI/UX Webinar</h3>
+        <p>Expert sessions on UI/UX design principles.</p>
+      </div>
+      <div class="card">
+        <img src="tech.jpg" alt="Tech Talks">
+        <h3>Fun & Tech Talks</h3>
+        <p>Interactive talks by Meet Shah and other speakers.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities">
+    <h2>Our Activities</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Graphics in Figma</h3>
+      </div>
+      <div class="card">
+        <h3>Drawing</h3>
+      </div>
+      <div class="card">
+        <h3>Coding</h3>
+      </div>
+      <div class="card">
+        <h3>Singing</h3>
+      </div>
+    </div>
+    <p style="margin-top:2rem;">Suggest another activity:</p>
+    <textarea placeholder="Your suggestion..." style="padding:1rem;width:60%;border-radius:8px;"></textarea>
+  </section>
+
+  <section id="team">
+    <h2>Meet Our Team</h2>
+    <div class="grid">
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Janak Parmar</h3>
+        <p>Main Leader</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Meet Shah</h3>
+        <p>Co-Head (Boys)</p>
+        <a href="https://meetshah274.github.io/Portfolio/" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Namita Shastri</h3>
+        <p>Co-Head (Girls)</p>
+        <a href="https://namitashastri.github.io/Portfolio/" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Garvi Shah</h3>
+        <p>Support</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Manthan Prajapati</h3>
+        <p>Support</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Chirayu Patil</h3>
+        <p>Support</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+      <div class="team-card">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+        <h3>Subham sukla</h3>
+        <p>Support</p>
+        <a href="#" target="_blank">Portfolio</a>
+        <!-- Paste portfolio link here -->
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>📧 Official Email: codeorbit01@gmail.com</p>
+    <p>Janak Parmar - ghjm@emal.com</p>
+    <p>Meet Shah - meet.shah@itmbu.ac.in</p>
+    <p>Namita Shastri - namita.shastri@itmbu.ac.in</p>
+    <div>
+      <a href="https://www.instagram.com/codeorbitt" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://discord.gg/FJRXjJy3jx" target="_blank"><i class="fab fa-discord"></i></a>
+      <a href="https://chat.whatsapp.com/DKH9bU5ap0BKcwxlUleyS5" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 CodeOrbit Club. All Rights Reserved.</p>
+  </footer>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
