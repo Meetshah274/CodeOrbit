@@ -34,13 +34,13 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at 30% 20%, #001226, #000814);
+      background: #000814;
       color: var(--light);
       overflow-x: hidden;
       position: relative;
     }
 
-    /* Animated Background */
+    /* Enhanced Animated Background */
     .animated-bg {
       position: fixed;
       top: 0;
@@ -49,28 +49,59 @@
       height: 100%;
       z-index: -2;
       overflow: hidden;
+      background: radial-gradient(circle at 30% 20%, #001a33, #000814, #000205);
     }
 
     .bg-particle {
       position: absolute;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(0, 170, 255, 0.15) 0%, transparent 70%);
-      animation: floatParticle 20s infinite linear;
+      background: radial-gradient(circle, rgba(0, 170, 255, 0.25) 0%, transparent 70%);
+      animation: floatParticle 25s infinite ease-in-out;
+      filter: blur(2px);
     }
 
     @keyframes floatParticle {
       0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
+        transform: translateY(0) translateX(0) rotate(0deg) scale(1);
         opacity: 0;
       }
       10% {
-        opacity: 0.7;
+        opacity: 0.8;
+      }
+      50% {
+        transform: translateY(-50vh) translateX(50px) rotate(180deg) scale(1.2);
+        opacity: 0.9;
       }
       90% {
-        opacity: 0.7;
+        opacity: 0.8;
       }
       100% {
-        transform: translateY(-100vh) translateX(100px) rotate(360deg);
+        transform: translateY(-100vh) translateX(100px) rotate(360deg) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    /* Shooting stars */
+    .shooting-star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8);
+      animation: shootingStar 3s linear infinite;
+    }
+
+    @keyframes shootingStar {
+      0% {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+      }
+      70% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateX(-500px) translateY(300px);
         opacity: 0;
       }
     }
@@ -79,8 +110,8 @@
        HEADER / NAVBAR
     ===============================*/
     header {
-      background: rgba(5, 15, 30, 0.95);
-      backdrop-filter: blur(15px);
+      background: rgba(5, 15, 30, 0.85);
+      backdrop-filter: blur(20px);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -89,52 +120,97 @@
       width: 100%;
       top: 0;
       z-index: 1000;
-      border-bottom: 1px solid rgba(0, 170, 255, 0.3);
-      box-shadow: 0 4px 25px rgba(0, 170, 255, 0.1);
-      transition: 0.4s ease;
+      border-bottom: 1px solid rgba(0, 170, 255, 0.4);
+      box-shadow: 0 8px 35px rgba(0, 170, 255, 0.15);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     header.scrolled {
       padding: 0.8rem 2.5rem;
       background: rgba(5, 15, 30, 0.98);
-      box-shadow: 0 4px 30px rgba(0, 170, 255, 0.15);
+      box-shadow: 0 8px 40px rgba(0, 170, 255, 0.25);
     }
 
     .logo-container {
       display: flex;
       align-items: center;
       gap: 12px;
+      animation: slideInLeft 1s ease;
+    }
+
+    @keyframes slideInLeft {
+      from {
+        transform: translateX(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     header img {
       height: 55px;
-      filter: drop-shadow(0 0 8px var(--primary));
-      transition: 0.4s;
+      filter: drop-shadow(0 0 15px var(--primary));
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        filter: drop-shadow(0 0 15px var(--primary));
+      }
+      50% {
+        filter: drop-shadow(0 0 25px var(--primary)) drop-shadow(0 0 35px var(--accent));
+      }
     }
 
     header img:hover {
-      transform: scale(1.05) rotate(5deg);
+      transform: scale(1.15) rotate(360deg);
     }
 
     .logo-text {
       font-size: 1.5rem;
       font-weight: 700;
-      background: linear-gradient(90deg, #00aaff, #33ccff);
+      background: linear-gradient(90deg, #00aaff, #33ccff, #00ffcc, #00aaff);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 15px rgba(0, 170, 255, 0.4);
+      animation: gradientFlow 3s linear infinite;
+      filter: drop-shadow(0 0 20px rgba(0, 170, 255, 0.6));
+    }
+
+    @keyframes gradientFlow {
+      0% {
+        background-position: 0% center;
+      }
+      100% {
+        background-position: 200% center;
+      }
     }
 
     nav {
       display: flex;
       gap: 1.5rem;
+      animation: slideInRight 1s ease;
+    }
+
+    @keyframes slideInRight {
+      from {
+        transform: translateX(50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
 
     nav a {
       color: var(--light);
       font-weight: 600;
       position: relative;
-      transition: 0.3s;
+      transition: all 0.3s ease;
       text-decoration: none;
       padding: 0.5rem 0;
       font-size: 1.05rem;
@@ -148,15 +224,36 @@
       width: 0%;
       height: 2px;
       background: linear-gradient(90deg, var(--primary), var(--accent));
-      transition: width 0.4s ease;
+      transition: width 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: var(--accent);
+      opacity: 0;
+      transition: all 0.3s ease;
     }
 
     nav a:hover {
       color: var(--primary);
+      transform: translateY(-3px);
     }
 
     nav a:hover::before {
       width: 100%;
+    }
+
+    nav a:hover::after {
+      width: 6px;
+      height: 6px;
+      opacity: 1;
     }
 
     /* ==============================
@@ -165,8 +262,7 @@
     #hero {
       text-align: center;
       padding: 12rem 2rem 8rem;
-      animation: fadeIn 1.5s ease;
-      background: radial-gradient(ellipse at center, rgba(0, 170, 255, 0.08) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(0, 170, 255, 0.12) 0%, transparent 70%);
       position: relative;
       overflow: hidden;
       min-height: 100vh;
@@ -179,6 +275,18 @@
     .hero-content {
       max-width: 900px;
       z-index: 2;
+      animation: fadeInUp 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(80px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-orbits {
@@ -192,22 +300,47 @@
 
     .orbit {
       position: absolute;
-      border: 1px solid rgba(0, 170, 255, 0.2);
+      border: 2px solid rgba(0, 170, 255, 0.3);
       border-radius: 50%;
       animation: orbitSpin 30s infinite linear;
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.2), inset 0 0 20px rgba(0, 170, 255, 0.1);
+    }
+
+    .orbit::before {
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+      top: -6px;
+      left: 50%;
+      box-shadow: 0 0 20px var(--accent);
+      animation: orbitDot 3s ease-in-out infinite;
+    }
+
+    @keyframes orbitDot {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px var(--accent);
+      }
+      50% {
+        transform: scale(1.5);
+        box-shadow: 0 0 30px var(--accent);
+      }
     }
 
     .orbit-1 {
-      width: 300px;
-      height: 300px;
+      width: 350px;
+      height: 350px;
       top: 20%;
       left: 10%;
       animation-duration: 40s;
     }
 
     .orbit-2 {
-      width: 500px;
-      height: 500px;
+      width: 550px;
+      height: 550px;
       top: 40%;
       right: 10%;
       animation-duration: 50s;
@@ -215,8 +348,8 @@
     }
 
     .orbit-3 {
-      width: 200px;
-      height: 200px;
+      width: 250px;
+      height: 250px;
       bottom: 20%;
       left: 20%;
       animation-duration: 25s;
@@ -240,26 +373,37 @@
 
     .hero-title-main {
       display: block;
-      background: linear-gradient(90deg, #00aaff, #33ccff, #0099ff);
+      background: linear-gradient(90deg, #00aaff, #33ccff, #00ffcc, #00aaff);
+      background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(0, 170, 255, 0.5);
-      animation: titleGlow 3s ease-in-out infinite alternate;
+      animation: titleGlow 4s ease-in-out infinite, gradientFlow 4s linear infinite;
+      filter: drop-shadow(0 0 30px rgba(0, 170, 255, 0.7));
     }
 
     .hero-title-sub {
       display: block;
       font-size: 3.5rem;
       color: var(--light);
-      text-shadow: 0 0 15px rgba(0, 170, 255, 0.3);
+      text-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
     @keyframes titleGlow {
-      0% {
-        text-shadow: 0 0 30px rgba(0, 170, 255, 0.5);
+      0%, 100% {
+        filter: drop-shadow(0 0 30px rgba(0, 170, 255, 0.7));
       }
-      100% {
-        text-shadow: 0 0 40px rgba(0, 170, 255, 0.8), 0 0 60px rgba(0, 170, 255, 0.4);
+      50% {
+        filter: drop-shadow(0 0 50px rgba(0, 170, 255, 1)) drop-shadow(0 0 70px rgba(0, 255, 204, 0.6));
       }
     }
 
@@ -271,22 +415,34 @@
       margin-left: auto;
       margin-right: auto;
       line-height: 1.6;
+      animation: fadeIn 2s ease 0.5s backwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     .cta-button {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+      background-size: 200% auto;
       color: #fff;
       padding: 1.2rem 3rem;
       border-radius: 50px;
       font-weight: 600;
       letter-spacing: 1px;
-      box-shadow: 0 0 25px rgba(0, 170, 255, 0.4);
-      transition: 0.4s;
+      box-shadow: 0 0 35px rgba(0, 170, 255, 0.6), 0 0 50px rgba(0, 170, 255, 0.3);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       text-decoration: none;
       display: inline-block;
       position: relative;
       overflow: hidden;
       font-size: 1.1rem;
+      animation: fadeIn 2s ease 1s backwards, pulse 2s ease-in-out infinite 2s;
     }
 
     .cta-button::before {
@@ -296,14 +452,14 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
       transition: 0.5s;
     }
 
     .cta-button:hover {
-      transform: scale(1.08);
-      box-shadow: 0 0 35px rgba(0, 170, 255, 0.8);
-      background: linear-gradient(90deg, #1f8fff, #00d4ff);
+      transform: scale(1.15) translateY(-5px);
+      box-shadow: 0 0 50px rgba(0, 170, 255, 1), 0 0 70px rgba(0, 170, 255, 0.6);
+      background-position: 100% center;
     }
 
     .cta-button:hover::before {
@@ -333,10 +489,22 @@
     .section-title {
       font-size: 2.8rem;
       color: var(--primary);
-      text-shadow: 0 0 15px rgba(0, 170, 255, 0.4);
+      text-shadow: 0 0 25px rgba(0, 170, 255, 0.6);
       margin-bottom: 1.5rem;
       position: relative;
       display: inline-block;
+      animation: fadeInScale 1s ease;
+    }
+
+    @keyframes fadeInScale {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
     }
 
     .section-title::after {
@@ -345,10 +513,17 @@
       bottom: -12px;
       left: 50%;
       transform: translateX(-50%);
-      width: 100px;
+      width: 0;
       height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
       border-radius: 2px;
+      animation: expandWidth 1s ease 0.5s forwards;
+    }
+
+    @keyframes expandWidth {
+      to {
+        width: 100px;
+      }
     }
 
     .section-subtitle {
@@ -357,6 +532,8 @@
       line-height: 1.7;
       color: #cfd9e4;
       font-size: 1.2rem;
+      opacity: 0;
+      animation: fadeIn 1s ease 0.5s forwards;
     }
 
     /* ==============================
@@ -371,11 +548,11 @@
 
     .card {
       background: linear-gradient(145deg, #0a192f, #091221);
-      border: 1px solid rgba(0, 170, 255, 0.15);
+      border: 1px solid rgba(0, 170, 255, 0.2);
       border-radius: 20px;
       padding: 2.5rem 2rem;
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.15);
-      transition: 0.4s ease;
+      box-shadow: 0 5px 25px rgba(0, 170, 255, 0.2);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       transform: translateY(0);
       position: relative;
       overflow: hidden;
@@ -389,9 +566,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), transparent);
+      background: linear-gradient(135deg, rgba(0, 170, 255, 0.15), transparent);
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.5s ease;
       z-index: -1;
     }
 
@@ -402,10 +579,12 @@
       left: 0;
       width: 100%;
       height: 5px;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+      background-size: 200% auto;
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.4s ease;
+      transition: transform 0.5s ease;
+      animation: gradientFlow 3s linear infinite;
     }
 
     .card:hover::before {
@@ -417,27 +596,35 @@
     }
 
     .card:hover {
-      transform: translateY(-15px) scale(1.03);
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.4);
+      transform: translateY(-20px) scale(1.05);
+      box-shadow: 0 15px 45px rgba(0, 170, 255, 0.5), 0 0 50px rgba(0, 170, 255, 0.3);
+      border-color: var(--accent);
     }
 
     .card img {
       width: 100%;
       border-radius: 12px;
       margin-bottom: 1.5rem;
-      transition: 0.4s;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       filter: brightness(0.9);
     }
 
     .card img:hover {
-      transform: scale(1.05);
-      filter: brightness(1);
+      transform: scale(1.1) rotate(2deg);
+      filter: brightness(1.1);
+      box-shadow: 0 10px 30px rgba(0, 170, 255, 0.4);
     }
 
     .card h3 {
       color: var(--primary);
       margin-bottom: 1rem;
       font-size: 1.6rem;
+      transition: all 0.3s ease;
+    }
+
+    .card:hover h3 {
+      color: var(--accent);
+      transform: scale(1.05);
     }
 
     .card p {
@@ -456,8 +643,8 @@
       background: linear-gradient(160deg, #0a223f, #09182e);
       padding: 2.5rem 1.5rem;
       border-radius: 20px;
-      border: 1px solid rgba(0, 170, 255, 0.15);
-      transition: 0.4s ease;
+      border: 1px solid rgba(0, 170, 255, 0.2);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       position: relative;
       overflow: hidden;
     }
@@ -469,9 +656,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), transparent);
+      background: linear-gradient(135deg, rgba(0, 170, 255, 0.15), rgba(0, 255, 204, 0.1));
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.5s ease;
     }
 
     .team-card:hover::before {
@@ -479,8 +666,9 @@
     }
 
     .team-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.3);
+      transform: translateY(-20px) rotateY(5deg);
+      box-shadow: 0 20px 50px rgba(0, 170, 255, 0.4);
+      border-color: var(--accent);
     }
 
     .team-card img {
@@ -490,14 +678,16 @@
       object-fit: cover;
       border: 3px solid var(--primary);
       margin-bottom: 1.5rem;
-      transition: 0.4s;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       position: relative;
       z-index: 1;
+      box-shadow: 0 0 20px rgba(0, 170, 255, 0.4);
     }
 
     .team-card img:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.6);
+      transform: scale(1.2) rotate(360deg);
+      box-shadow: 0 0 35px rgba(0, 170, 255, 0.8), 0 0 50px rgba(0, 255, 204, 0.5);
+      border-color: var(--accent);
     }
 
     .team-card h3 {
@@ -506,6 +696,12 @@
       font-size: 1.4rem;
       position: relative;
       z-index: 1;
+      transition: all 0.3s ease;
+    }
+
+    .team-card:hover h3 {
+      color: var(--accent);
+      transform: scale(1.1);
     }
 
     .team-card p {
@@ -516,12 +712,13 @@
     }
 
     .team-card a {
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+      background-size: 200% auto;
       color: #fff;
       padding: 0.7rem 1.5rem;
       border-radius: 8px;
       font-weight: 600;
-      transition: 0.3s;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       display: inline-block;
       margin-top: 0.5rem;
       text-decoration: none;
@@ -530,9 +727,9 @@
     }
 
     .team-card a:hover {
-      background: linear-gradient(90deg, #1f8fff, #00d4ff);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
-      transform: scale(1.05);
+      background-position: 100% center;
+      box-shadow: 0 0 30px rgba(0, 170, 255, 0.7);
+      transform: scale(1.1) translateY(-3px);
     }
 
     /* ==============================
@@ -544,11 +741,11 @@
 
     .activity-card {
       background: linear-gradient(145deg, #0a192f, #091221);
-      border: 1px solid rgba(0, 170, 255, 0.15);
+      border: 1px solid rgba(0, 170, 255, 0.2);
       border-radius: 20px;
       padding: 2.5rem 2rem;
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.15);
-      transition: 0.4s ease;
+      box-shadow: 0 5px 25px rgba(0, 170, 255, 0.2);
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       transform: translateY(0);
       position: relative;
       overflow: hidden;
@@ -566,9 +763,9 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), transparent);
+      background: linear-gradient(135deg, rgba(0, 170, 255, 0.15), rgba(0, 255, 204, 0.1));
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.5s ease;
     }
 
     .activity-card:hover::before {
@@ -576,25 +773,34 @@
     }
 
     .activity-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 0 30px rgba(0, 170, 255, 0.4);
+      transform: translateY(-20px) scale(1.08);
+      box-shadow: 0 20px 50px rgba(0, 170, 255, 0.5);
+      border-color: var(--accent);
     }
 
     .activity-card i {
       font-size: 3rem;
       color: var(--primary);
       margin-bottom: 1.5rem;
-      transition: 0.4s;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      filter: drop-shadow(0 0 15px rgba(0, 170, 255, 0.6));
     }
 
     .activity-card:hover i {
-      transform: scale(1.2);
+      transform: scale(1.4) rotate(360deg);
       color: var(--accent);
+      filter: drop-shadow(0 0 25px rgba(0, 255, 204, 0.8));
     }
 
     .activity-card h3 {
       color: var(--light);
       font-size: 1.4rem;
+      transition: all 0.3s ease;
+    }
+
+    .activity-card:hover h3 {
+      color: var(--accent);
+      transform: scale(1.1);
     }
 
     .suggestion-box {
@@ -619,33 +825,35 @@
       font-family: 'Poppins', sans-serif;
       resize: vertical;
       min-height: 120px;
-      transition: 0.3s;
+      transition: all 0.3s ease;
       font-size: 1rem;
     }
 
     .suggestion-box textarea:focus {
       outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 15px rgba(0, 170, 255, 0.3);
+      border-color: var(--accent);
+      box-shadow: 0 0 25px rgba(0, 255, 204, 0.4);
+      transform: scale(1.02);
     }
 
     .suggestion-box button {
       margin-top: 1.5rem;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      background: linear-gradient(90deg, var(--primary), var(--secondary), var(--primary));
+      background-size: 200% auto;
       color: #fff;
       padding: 1rem 2.5rem;
       border-radius: 10px;
       font-weight: 600;
       border: none;
       cursor: pointer;
-      transition: 0.3s;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       font-size: 1rem;
     }
 
     .suggestion-box button:hover {
-      background: linear-gradient(90deg, #1f8fff, #00d4ff);
-      box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
-      transform: scale(1.05);
+      background-position: 100% center;
+      box-shadow: 0 0 30px rgba(0, 170, 255, 0.7);
+      transform: scale(1.1) translateY(-3px);
     }
 
     /* ==============================
@@ -662,17 +870,23 @@
     .contact-info p {
       margin-bottom: 0.8rem;
       font-size: 1.2rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info p:hover {
+      transform: scale(1.05);
+      color: var(--accent);
     }
 
     .contact-info a {
       color: var(--primary);
       text-decoration: none;
-      transition: 0.3s;
+      transition: all 0.3s ease;
     }
 
     .contact-info a:hover {
       color: var(--accent);
-      text-shadow: 0 0 10px rgba(0, 170, 255, 0.5);
+      text-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
     }
 
     .social-links {
@@ -692,10 +906,11 @@
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       font-size: 1.8rem;
-      transition: 0.4s;
+      transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       text-decoration: none;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0, 170, 255, 0.4);
     }
 
     .social-links a::before {
@@ -705,7 +920,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), transparent);
       opacity: 0;
       transition: opacity 0.3s ease;
     }
@@ -715,9 +930,9 @@
     }
 
     .social-links a:hover {
-      transform: translateY(-8px) scale(1.1);
-      box-shadow: 0 0 25px rgba(0, 170, 255, 0.7);
-      background: linear-gradient(135deg, #1f8fff, #00d4ff);
+      transform: translateY(-10px) scale(1.2) rotate(360deg);
+      box-shadow: 0 10px 40px rgba(0, 170, 255, 0.8);
+      background: linear-gradient(135deg, var(--accent), var(--primary));
     }
 
     /* ==============================
@@ -727,7 +942,7 @@
       background: #010a1b;
       text-align: center;
       padding: 3rem;
-      border-top: 1px solid rgba(0, 170, 255, 0.2);
+      border-top: 1px solid rgba(0, 170, 255, 0.3);
       position: relative;
     }
 
@@ -737,39 +952,30 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--primary), transparent);
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
+      animation: gradientFlow 3s linear infinite;
     }
 
     footer p {
       color: #89a1c1;
       font-size: 1rem;
       letter-spacing: 0.5px;
+      animation: fadeIn 1s ease;
     }
 
     /* ==============================
-       ANIMATIONS
+       SCROLL REVEAL ANIMATION
     ===============================*/
-    @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    @keyframes fadeUp {
-      0% {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* ==============================
@@ -902,17 +1108,17 @@
     <h2 class="section-title">Our Events</h2>
     <p class="section-subtitle">Discover our exciting lineup of tech events designed to inspire, educate, and connect</p>
     <div class="grid">
-      <div class="card">
+      <div class="card reveal">
         <img src="hackathon.jpg" alt="Hackathon">
         <h3>Hackathons</h3>
         <p>Mini & Major hackathons to showcase your coding potential and solve real-world problems.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <img src="UI-UX.webp" alt="UI/UX Webinar">
         <h3>UI/UX Webinar</h3>
         <p>Interactive sessions on UI/UX design principles, tools, and creative thinking.</p>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <img src="tech.jpg" alt="Tech Talks">
         <h3>Tech Talks</h3>
         <p>Fun & informative discussions with brilliant speakers from the tech industry.</p>
@@ -925,19 +1131,19 @@
     <h2 class="section-title">Our Activities</h2>
     <p class="section-subtitle">Explore our diverse range of activities that foster creativity and technical skills</p>
     <div class="grid">
-      <div class="activity-card">
+      <div class="activity-card reveal">
         <i class="fas fa-paint-brush"></i>
         <h3>Graphics in Figma</h3>
       </div>
-      <div class="activity-card">
+      <div class="activity-card reveal">
         <i class="fas fa-pencil-alt"></i>
         <h3>Drawing</h3>
       </div>
-      <div class="activity-card">
+      <div class="activity-card reveal">
         <i class="fas fa-code"></i>
         <h3>Coding</h3>
       </div>
-      <div class="activity-card">
+      <div class="activity-card reveal">
         <i class="fas fa-music"></i>
         <h3>Singing</h3>
       </div>
@@ -954,57 +1160,50 @@
     <h2 class="section-title">Meet Our Team</h2>
     <p class="section-subtitle">The passionate individuals driving CodeOrbit forward</p>
     <div class="grid">
-      <div class="team-card">
+      <div class="team-card reveal">
         <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Janak Parmar</h3>
         <p>Main Leader</p>
         <a href="#">Portfolio</a>
       </div>
-      <div class="team-card">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+      <div class="team-card reveal">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Meet Shah</h3>
         <p>Co-Head (Boys)</p>
         <a href="https://meetshah274.github.io/Portfolio/" target="_blank">Portfolio</a>
       </div>
-      <div class="team-card">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+      <div class="team-card reveal">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Namita Shastri</h3>
         <p>Co-Head (Girls)</p>
         <a href="https://namitashastri.github.io/Portfolio/" target="_blank">Portfolio</a>
       </div>
-      <div class="team-card">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+      <div class="team-card reveal">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Garvi Shah</h3>
         <p>Support</p>
         <a href="#">Portfolio</a>
       </div>
-      <div class="team-card">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+      <div class="team-card reveal">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Manthan Prajapati</h3>
         <p>Support</p>
         <a href="#">Portfolio</a>
       </div>
-      <div class="team-card">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+      <div class="team-card reveal">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Chirayu Patil</h3>
         <p>Support</p>
         <a href="#">Portfolio</a>
       </div>
-      <div class="team-card">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+      <div class="team-card reveal">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Hitesh Bharwad</h3>
         <p>Support</p>
         <a href="#">Portfolio</a>
       </div>
-      <div class="team-card">
-        <img
-          src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
+      <div class="team-card reveal">
+        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png">
         <h3>Subham Sukla</h3>
         <p>Support</p>
         <a href="#">Portfolio</a>
@@ -1018,9 +1217,9 @@
     <p class="section-subtitle">Get in touch with us for any queries or collaborations</p>
     <div class="contact-info">
       <p>📧 codeorbit01@gmail.com</p>
-      <p>Janak Parmar - <a href="janak.parmar@itmbu.ac.in">janak.parmar@itmbu.ac.in</a></p>
-      <p>Meet Shah - <a href="meet.shah@itmbu.ac.in">meet.shah@itmbu.ac.in</a></p>
-      <p>Namita Shastri - <a href="namita.shastri@itmbu.ac.in">namita.shastri@itmbu.ac.in</a></p>
+      <p>Janak Parmar - <a href="mailto:janak.parmar@itmbu.ac.in">janak.parmar@itmbu.ac.in</a></p>
+      <p>Meet Shah - <a href="mailto:meet.shah@itmbu.ac.in">meet.shah@itmbu.ac.in</a></p>
+      <p>Namita Shastri - <a href="mailto:namita.shastri@itmbu.ac.in">namita.shastri@itmbu.ac.in</a></p>
     </div>
     <div class="social-links">
       <a href="https://www.instagram.com/codeorbitt" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -1057,40 +1256,35 @@
       });
     });
 
-    // Add animation to cards when they come into view
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver(function(entries) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
+    // Scroll reveal animation
+    function reveal() {
+      const reveals = document.querySelectorAll('.reveal');
+      
+      reveals.forEach(element => {
+        const windowHeight = window.innerHeight;
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add('active');
         }
       });
-    }, observerOptions);
+    }
 
-    // Observe all cards for animation
-    document.querySelectorAll('.card, .team-card, .activity-card').forEach(card => {
-      card.style.opacity = '0';
-      card.style.transform = 'translateY(20px)';
-      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      observer.observe(card);
-    });
+    window.addEventListener('scroll', reveal);
+    reveal(); // Check on page load
 
     // Create animated background particles
     function createParticles() {
       const bg = document.getElementById('animatedBg');
-      const particleCount = 30;
+      const particleCount = 40;
       
       for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement('div');
         particle.classList.add('bg-particle');
         
         // Random size
-        const size = Math.random() * 120 + 30;
+        const size = Math.random() * 150 + 50;
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         
@@ -1101,19 +1295,94 @@
         particle.style.top = `${top}%`;
         
         // Random animation duration
-        const duration = Math.random() * 30 + 20;
+        const duration = Math.random() * 40 + 25;
         particle.style.animationDuration = `${duration}s`;
         
         // Random delay
-        const delay = Math.random() * 10;
+        const delay = Math.random() * 15;
         particle.style.animationDelay = `${delay}s`;
         
         bg.appendChild(particle);
+      }
+
+      // Create shooting stars
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('div');
+        star.classList.add('shooting-star');
+        
+        const top = Math.random() * 50;
+        const right = Math.random() * 100;
+        star.style.top = `${top}%`;
+        star.style.right = `${right}%`;
+        
+        const duration = Math.random() * 2 + 2;
+        star.style.animationDuration = `${duration}s`;
+        
+        const delay = Math.random() * 10;
+        star.style.animationDelay = `${delay}s`;
+        
+        bg.appendChild(star);
       }
     }
 
     // Initialize particles when page loads
     window.addEventListener('load', createParticles);
+
+    // Add interactive card tilt effect
+    document.querySelectorAll('.card, .team-card, .activity-card').forEach(card => {
+      card.addEventListener('mousemove', function(e) {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px) scale(1.05)`;
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        card.style.transform = '';
+      });
+    });
+
+    // Button click effect
+    document.querySelectorAll('.cta-button, .team-card a, .suggestion-box button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        const ripple = document.createElement('span');
+        ripple.style.position = 'absolute';
+        ripple.style.borderRadius = '50%';
+        ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+        ripple.style.width = '20px';
+        ripple.style.height = '20px';
+        ripple.style.pointerEvents = 'none';
+        ripple.style.animation = 'ripple 0.6s ease-out';
+        
+        const rect = this.getBoundingClientRect();
+        ripple.style.left = (e.clientX - rect.left - 10) + 'px';
+        ripple.style.top = (e.clientY - rect.top - 10) + 'px';
+        
+        this.appendChild(ripple);
+        
+        setTimeout(() => ripple.remove(), 600);
+      });
+    });
+
+    // Add ripple animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes ripple {
+        to {
+          width: 100px;
+          height: 100px;
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   </script>
 </body>
 </html>
